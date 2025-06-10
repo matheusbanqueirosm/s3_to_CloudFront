@@ -55,7 +55,7 @@ Entre via CLI, no container:
 aws ecs execute-command --cluster sm-click-back-utils-cluster --task de4b787dd3014fbfafb178962c82d148 --container sm-click-back-utils-celery-worker --interactive --command "/bin/bash" 
 ```
 
-Execute o comando para entrar no shell:
+Execute o comando para entrar no shell e executar a função:
 
 ```hcl
 # Importa a função
@@ -75,4 +75,18 @@ change_s3_link_task.delay()
   
 - ✅ Processamento em lotes de 100 registros, com uso de transações atômicas para garantir integridade e performance.
 
+- ✅ Função que retorna as urls get_public_file_url
+
+
+#### 3. Trocando variavel USE_CLOUDFRONT_URL de false para true, Nos repositórios [`sm-click-back-app`](https://github.com/service-marketing/sm-click-back-app), [`sm-click-back-app-attendant`](https://github.com/service-marketing/sm-click-back-app-attendant), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
+
+```hcl
+"USE_CLOUDFRONT_URL": "False",
+```
+
+para:
+
+```hcl
+"USE_CLOUDFRONT_URL": "True",
+```
 
