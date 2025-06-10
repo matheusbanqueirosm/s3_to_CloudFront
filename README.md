@@ -36,25 +36,25 @@ create_cloudfront = true
 
 No repositório [`sm-click-back-utils`](https://github.com/service-marketing/sm-click-back-utils), acesse os diretórios `infra` > `environments` e edite o arquivo `prd.tfvars`.
 
-1. Altere a variável:
+1. Altere as variáveis:
 
 ```hcl
 "USE_CLOUDFRONT_URL": "False",
+"CLOUDFRONT_URL": "",
 ```
 
 para:
 
 ```hcl
 "USE_CLOUDFRONT_URL": "True",
+"CLOUDFRONT_URL": "https://URL DADA PELO CLOUDFRONT NA HORA QUE FOI CRIADO",
 ```
 
 2. (dev) é necessário aumentar a memória do celery-worker para `3072`
 
 3. Suba e ative o `SSMExecPolicyUtils` force uma nova implantação
 
-4. Entre no container do gunicorn `sm-click-back-utils-service-celery-worker` na AWS
-
-Entre via CLI, no container:
+4. Entre no container do celery worker `sm-click-back-utils-service-celery-worker` via CLI
 
 ```hcl
 aws ecs execute-command --cluster sm-click-back-utils-cluster --task de4b787dd3014fbfafb178962c82d148 --container sm-click-back-utils-celery-worker --interactive --command "/bin/bash" 
