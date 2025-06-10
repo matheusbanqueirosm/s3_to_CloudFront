@@ -2,11 +2,37 @@
 
 ## 📚 Sumário
 
-1. [Trocando prefixos dos arquivos no banco de dados](#2-trocando-prefixos-dos-arquivos-no-banco-de-dados)
-2. [Ativando o uso de CloudFront](#1-ativando-o-uso-de-cloudfront)  
+1. [Ativando o uso de CloudFront](#1-ativando-o-uso-de-cloudfront)  
+2. [Trocando prefixos dos arquivos no banco de dados](#2-trocando-prefixos-dos-arquivos-no-banco-de-dados)
 
 
-### 1. Trocando Prefixos dos arquivos no banco de dados 
+### 1. Ativando o uso de CloudFront
+
+No repositório [`sm-click-infra`](https://github.com/service-marketing/sm-click-infra), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
+
+Altere a variável:
+
+```hcl
+create_cloudfront = false
+```
+
+para:
+
+```hcl
+create_cloudfront = true
+```
+
+#### 🔧 O que essa alteração faz?
+
+- ✅ Uma distribuição CloudFront configurada para servir arquivos diretamente do bucket S3 sm-click-client-files-{env}.
+
+- ✅ Um OAC (Origin Access Control), garantindo que apenas o CloudFront tenha permissão para acessar os objetos do bucket.
+
+- ❌ A política pública de leitura direta do S3 deixa de ser criada, tornando o bucket privado por padrão.
+
+<hr />
+
+### 2. Trocando Prefixos dos arquivos no banco de dados 
 
 No repositório [`sm-click-back-utils`](https://github.com/service-marketing/sm-click-back-utils), acesse os diretórios `infra` > `environments` e edite o arquivo `prd.tfvars`.
 
@@ -56,34 +82,6 @@ change_s3_link_task.delay()
 
 - ✅ Função que retorna as urls get_public_file_url
   
-<hr />
-
-
-
-### 1. Ativando o uso de CloudFront
-
-No repositório [`sm-click-infra`](https://github.com/service-marketing/sm-click-infra), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
-
-Altere a variável:
-
-```hcl
-create_cloudfront = false
-```
-
-para:
-
-```hcl
-create_cloudfront = true
-```
-
-#### 🔧 O que essa alteração faz?
-
-- ✅ Uma distribuição CloudFront configurada para servir arquivos diretamente do bucket S3 sm-click-client-files-{env}.
-
-- ✅ Um OAC (Origin Access Control), garantindo que apenas o CloudFront tenha permissão para acessar os objetos do bucket.
-
-- ❌ A política pública de leitura direta do S3 deixa de ser criada, tornando o bucket privado por padrão.
-
 <hr />
 
 
