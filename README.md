@@ -1,6 +1,8 @@
+![Banner attendances (1)](https://github.com/user-attachments/assets/f5a004e1-1e4a-4ec2-a83a-68268484a092)
+
 # 🔄 Alterando S3 para CloudFront
 
-## 📚 Sumário
+### 📚 Sumário
 
 1. [Habilitando o CloudFront](#1-habilitando-o-cloudfront)  
 2. [Atualizando variáveis nos serviços](#2-atualizando-variáveis-nos-serviços)  
@@ -8,9 +10,9 @@
 
 ### 1. Habilitando o CloudFront
 
-No repositório [`sm-click-infra`](https://github.com/service-marketing/sm-click-infra), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
+> No repositório [`sm-click-infra`](https://github.com/service-marketing/sm-click-infra), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
 
-Altere a variável:
+1. Altere a variável:
 
 ```hcl
 create_cloudfront = false
