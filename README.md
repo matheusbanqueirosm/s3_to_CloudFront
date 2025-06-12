@@ -2,11 +2,11 @@
 
 ## 📚 Sumário
 
-1. [Ativando o uso de CloudFront](#1-ativando-o-uso-de-cloudfront)  
-2. [Trocando prefixos dos arquivos no banco de dados](#2-trocando-prefixos-dos-arquivos-no-banco-de-dados)
+1. [Habilitando o CloudFront](#1-habilitando-o-cloudfront)  
+2. [Atualizando variáveis nos serviços](#2-atualizando-variáveis-nos-serviços)  
+3. [Atualizando prefixos dos arquivos no banco de dados](#3-atualizando-prefixos-dos-arquivos-no-banco-de-dados)
 
-
-### 1. Ativando o uso de CloudFront
+### 1. Habilitando o CloudFront
 
 No repositório [`sm-click-infra`](https://github.com/service-marketing/sm-click-infra), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
 
@@ -22,17 +22,27 @@ para:
 create_cloudfront = true
 ```
 
-#### 🔧 O que essa alteração faz?
+<hr />
 
-- ✅ Uma distribuição CloudFront configurada para servir arquivos diretamente do bucket S3 sm-click-client-files-{env}.
+#### 2. Atualizando variáveis nos serviços
 
-- ✅ Um OAC (Origin Access Control), garantindo que apenas o CloudFront tenha permissão para acessar os objetos do bucket.
+> Nos repositórios [`sm-click-back-app`](https://github.com/service-marketing/sm-click-back-app), [`sm-click-back-attendances`](https://github.com/service-marketing/sm-click-back-attendances), [`sm-click-back-integrations`](https://github.com/service-marketing/sm-click-back-integrations) [`sm-click-back-app-attendant`](https://github.com/service-marketing/sm-click-back-app-attendant), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
 
-- ❌ A política pública de leitura direta do S3 deixa de ser criada, tornando o bucket privado por padrão.
+```hcl
+"USE_CLOUDFRONT_URL": "False",
+"CLOUDFRONT_URL": "",
+```
+
+para:
+
+```hcl
+"USE_CLOUDFRONT_URL": "True",
+"CLOUDFRONT_URL": "https://URL DADA PELO CLOUDFRONT NA HORA QUE FOI CRIADO NO PASSO 1",
+```
 
 <hr />
 
-### 2. Trocando Prefixos dos arquivos no banco de dados 
+### 3. Trocando Prefixos dos arquivos no banco de dados 
 
 No repositório [`sm-click-back-utils`](https://github.com/service-marketing/sm-click-back-utils), acesse os diretórios `infra` > `environments` e edite o arquivo `prd.tfvars`.
 
@@ -47,10 +57,10 @@ para:
 
 ```hcl
 "USE_CLOUDFRONT_URL": "True",
-"CLOUDFRONT_URL": "https://URL DADA PELO CLOUDFRONT NA HORA QUE FOI CRIADO",
+"CLOUDFRONT_URL": "https://URL DADA PELO CLOUDFRONT NA HORA QUE FOI CRIADO NO PASSO 1",
 ```
 
-2. (dev) é necessário aumentar a memória do celery-worker para `3072`
+2. (dev) é necessário aumentar a memória e cpu do celery-worker
 
 3. Suba e ative o `SSMExecPolicyUtils` force uma nova implantação
 
@@ -70,30 +80,6 @@ from tools.tasks import change_s3_link_task
 change_s3_link_task.delay()
 ```
 
-#### 🔧 O que essa alteração faz?
-
-- ✅ Dispara a função change_s3_link, responsável por atualizar os prefixos das URLs de arquivos salvos no banco de dados.
-  
-- ✅ Varredura completa: percorre todos os modelos do Django, incluindo campos CharField, TextField e JSONField.
-  
-- ✅ Utiliza cache interno para evitar reprocessamentos e otimizar o desempenho.
-  
-- ✅ Processamento em lotes de 100 registros, com uso de transações atômicas para garantir integridade e performance.
-
-- ✅ Função que retorna as urls get_public_file_url
   
 <hr />
-
-
-#### 3. Trocando variavel USE_CLOUDFRONT_URL de false para true, Nos repositórios [`sm-click-back-app`](https://github.com/service-marketing/sm-click-back-app), [`sm-click-back-app-attendant`](https://github.com/service-marketing/sm-click-back-app-attendant), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
-
-```hcl
-"USE_CLOUDFRONT_URL": "False",
-```
-
-para:
-
-```hcl
-"USE_CLOUDFRONT_URL": "True",
-```
 
