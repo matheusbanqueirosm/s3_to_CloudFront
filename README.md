@@ -42,9 +42,9 @@ para:
 
 <hr />
 
-### 3. Trocando Prefixos dos arquivos no banco de dados 
+### 3. Atualizando prefixos dos arquivos no banco de dados
 
-No repositório [`sm-click-back-utils`](https://github.com/service-marketing/sm-click-back-utils), acesse os diretórios `infra` > `environments` e edite o arquivo `prd.tfvars`.
+> No repositório [`sm-click-back-utils`](https://github.com/service-marketing/sm-click-back-utils), acesse os diretórios `infra` > `environments` e edite o arquivo `prd.tfvars`.
 
 1. Altere as variáveis:
 
