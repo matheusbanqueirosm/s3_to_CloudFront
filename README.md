@@ -7,7 +7,7 @@
 1. [Habilitando o CloudFront](#1-habilitando-o-cloudfront)
 2. [Atualizando caminho no FrontEnd](#2-atualizando-caminho-no-FrontEnd)  
 3. [Atualizando variáveis nos serviços](#3-atualizando-variáveis-nos-serviços)  
-4. [Atualizando prefixos dos arquivos no banco de dados](#3-atualizando-prefixos-dos-arquivos-no-banco-de-dados)
+4. [Atualizando prefixos dos arquivos no banco de dados](#4-atualizando-prefixos-dos-arquivos-no-banco-de-dados)
 
 ### 1. Habilitando o CloudFront
 
@@ -40,7 +40,7 @@ O arquivo `chatsStore.ts` contem  a url do bucket: `https://sm-click-client-file
 
 <hr />
 
-#### 3. Atualizando variáveis nos serviços
+### 3. Atualizando variáveis nos serviços
 
 > Nos repositórios [`sm-click-back-app`](https://github.com/service-marketing/sm-click-back-app), [`sm-click-back-attendances`](https://github.com/service-marketing/sm-click-back-attendances), [`sm-click-back-integrations`](https://github.com/service-marketing/sm-click-back-integrations) [`sm-click-back-app-attendant`](https://github.com/service-marketing/sm-click-back-app-attendant), acesse o diretório `environments` e edite o arquivo `prd.tfvars`.
 
@@ -58,7 +58,7 @@ para:
 
 <hr />
 
-### 3. Atualizando prefixos dos arquivos no banco de dados
+### 4. Atualizando prefixos dos arquivos no banco de dados
 
 > No repositório [`sm-click-back-utils`](https://github.com/service-marketing/sm-click-back-utils), acesse os diretórios `infra` > `environments` e edite o arquivo `prd.tfvars`.
 
