@@ -27,7 +27,7 @@ create_cloudfront = true
 
 <hr />
 
-#### 2. Atualizando caminho no FrontEnd
+### 2. Atualizando caminho no FrontEnd
 > No repo [`sm-click-zap-front`](https://github.com/service-marketing/sm-zap-front)
 
 Os arquivos `new_urls.js` e `register.vue` contem  a url do bucket: `https://sm-click-client-files-prd.s3.us-east-1.amazonaws.com/`
