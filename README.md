@@ -8,6 +8,8 @@
 2. [Atualizando caminho no FrontEnd](#2-atualizando-caminho-no-FrontEnd)  
 3. [Atualizando variáveis nos serviços](#3-atualizando-variáveis-nos-serviços)  
 4. [Atualizando prefixos dos arquivos no banco de dados](#4-atualizando-prefixos-dos-arquivos-no-banco-de-dados)
+5. [Comandos no banco de dados](#5-comandos-banco-de-dados)
+
 
 ### 1. Habilitando o CloudFront
 
@@ -95,7 +97,13 @@ from tools.tasks import change_s3_link_task
 # Chama a função
 change_s3_link_task.delay()
 ```
-
   
 <hr />
 
+5. Comandos no banco de dados
+
+> O mais fácil de ver é a tabela de contatos que tem bastate photo com a url
+
+```hcl
+SELECT * FROM contacts_contact
+```
