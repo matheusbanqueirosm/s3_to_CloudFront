@@ -10,6 +10,7 @@
 4. [Atualizando prefixos dos arquivos no banco de dados](#4-atualizando-prefixos-dos-arquivos-no-banco-de-dados)
 5. [Comandos no banco de dados](#5-comandos-banco-de-dados)
 
+### ⚠️ Atualizar versão da tools com a mais recente possivel 
 
 ### 1. Habilitando o CloudFront
 
