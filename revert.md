@@ -1,4 +1,7 @@
+![Banner attendances (2)](https://github.com/user-attachments/assets/5e5fa12a-5552-470f-a279-1db95856964b)
+
 # 🔁 Revertendo CloudFront para S3
+
 
 ### 📚 Sumário
 
